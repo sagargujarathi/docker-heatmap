@@ -29,13 +29,17 @@ func (w *SyncWorker) Start() {
 	log.Println("Starting sync worker...")
 
 	// Run cleanup daily at midnight
-	_, err := w.cron.AddFunc("0 0 * * *", w.cleanupOldData)
-	if err != nil {
+	if _, err := w.cron.AddFunc("0 0 * * *", w.cleanupOldData); err != nil {
 		log.Printf("Failed to add cleanup cron job: %v", err)
 	}
 
+	// Run scheduled sync for all accounts every 6 hours
+	if _, err := w.cron.AddFunc("0 */6 * * *", w.syncAllAccounts); err != nil {
+		log.Printf("Failed to add scheduled sync cron job: %v", err)
+	}
+
 	w.cron.Start()
-	log.Println("Sync worker started - (scheduled sync disabled)")
+	log.Println("Sync worker started - (scheduled sync every 6 hours)")
 }
 
 // Stop gracefully stops the worker

@@ -33,8 +33,5 @@ COPY --from=builder --chown=appuser:appgroup /app/main .
 # Switch to non-root user
 USER appuser
 
-# Expose port
-EXPOSE 8080
-
 # Run the application
 CMD ["./main"]

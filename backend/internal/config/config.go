@@ -36,10 +36,10 @@ type Config struct {
 var AppConfig *Config
 
 func Load() {
-	// Load .env file if it exists
-	if err := godotenv.Load(); err != nil {
-		log.Println("No .env file found, using environment variables")
-	}
+	// Try loading .env or .env.server if they exist locally (for development)
+	// In Docker, variables are injected directly into the environment, so we don't need the file.
+	_ = godotenv.Load()              // Try default .env
+	_ = godotenv.Load(".env.server") // Try .env.server if specified
 
 	AppConfig = &Config{
 		// Server
