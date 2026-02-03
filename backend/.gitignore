@@ -1,4 +1,11 @@
-cmd.exe
-.env
+# Binaries
+main
 main.exe
-go.sum
+*.exe
+
+# Environment
+.env
+.env.*
+
+# Dependencies
+# go.sum should be tracked!

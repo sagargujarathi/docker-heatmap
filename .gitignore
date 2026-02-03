@@ -1,2 +1,35 @@
-.env.server
+# Environment variables
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.server
+.env.*
+!.env.example
+!.env.*.example
+
+# Dependencies
+node_modules/
+vendor/
+backend/vendor/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+main
+main.exe
+backend/main
+backend/main.exe
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

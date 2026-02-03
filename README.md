@@ -160,14 +160,14 @@ openssl rand -base64 24 | head -c 32
 ### Markdown (GitHub README)
 
 ```markdown
-![Docker Activity](https://dockerheatmap.dev/api/heatmap/your-docker-username.svg)
+![Docker Activity](https://api.dockerheatmap.dev/api/heatmap/your-docker-username.svg)
 ```
 
 ### HTML
 
 ```html
 <img
-  src="https://dockerheatmap.dev/api/heatmap/your-docker-username.svg"
+  src="https://api.dockerheatmap.dev/api/heatmap/your-docker-username.svg"
   alt="Docker Activity"
 />
 ```
@@ -177,7 +177,7 @@ openssl rand -base64 24 | head -c 32
 ```html
 <a href="https://dockerheatmap.dev/profile/your-docker-username">
   <img
-    src="https://dockerheatmap.dev/api/heatmap/your-docker-username.svg"
+    src="https://api.dockerheatmap.dev/api/heatmap/your-docker-username.svg"
     alt="Docker Activity"
   />
 </a>
@@ -228,7 +228,7 @@ docker-compose up --build
 ```env
 ENVIRONMENT=production
 FRONTEND_URL=https://dockerheatmap.dev
-GITHUB_CALLBACK_URL=https://dockerheatmap.dev/api/auth/github/callback
+GITHUB_CALLBACK_URL=https://api.dockerheatmap.dev/api/auth/github/callback
 ```
 
 ## 🔐 Security
