@@ -53,24 +53,24 @@ export function ProfileClient({ username }: ProfileClientProps) {
   return (
     <div className="min-h-screen bg-background">
       <main className="container py-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
           {/* Profile Header */}
-          <div className="flex items-start gap-5">
-            <Avatar className="h-20 w-20 border-2 border-muted shadow-sm">
+          <div className="flex flex-col sm:flex-row items-start gap-6">
+            <Avatar className="h-20 w-20 border-2 border-muted shadow-sm shrink-0">
               <AvatarImage src={profile.user.avatar_url} />
               <AvatarFallback className="text-2xl font-bold bg-primary/10">
                 {profile.user.github_username[0].toUpperCase()}
               </AvatarFallback>
             </Avatar>
-            <div className="space-y-1">
-              <h1 className="text-3xl font-bold tracking-tight">
+            <div className="space-y-1 min-w-0">
+              <h1 className="text-3xl font-bold tracking-tight truncate">
                 {profile.user.name || profile.user.github_username}
               </h1>
               <div className="flex flex-wrap items-center gap-3 text-muted-foreground">
                 <Link
                   href={`https://github.com/${profile.user.github_username}`}
                   target="_blank"
-                  className="flex items-center gap-1.5 hover:text-primary transition-colors bg-muted/50 px-2 py-0.5 rounded-md text-sm border"
+                  className="flex items-center gap-1.5 hover:text-primary transition-colors bg-muted/50 px-2 py-0.5 rounded-md text-sm border shrink-0"
                 >
                   <Github className="h-3.5 w-3.5" />
                   {profile.user.github_username}
@@ -78,7 +78,7 @@ export function ProfileClient({ username }: ProfileClientProps) {
                 <span className="text-muted-foreground/30 hidden sm:inline">
                   |
                 </span>
-                <span className="flex items-center gap-1.5 bg-primary/5 text-primary px-2 py-0.5 rounded-md text-sm border border-primary/10 font-medium">
+                <span className="flex items-center gap-1.5 bg-primary/5 text-primary px-2 py-0.5 rounded-md text-sm border border-primary/10 font-medium shrink-0">
                   {profile.docker.username} (Docker Hub)
                 </span>
               </div>
@@ -90,7 +90,7 @@ export function ProfileClient({ username }: ProfileClientProps) {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <Button
               variant="outline"
               size="sm"
@@ -102,7 +102,7 @@ export function ProfileClient({ username }: ProfileClientProps) {
               ) : (
                 <Copy className="h-4 w-4" />
               )}
-              {copied ? "Copied" : "Copy Profile Link"}
+              {copied ? "Copied" : "Copy Link"}
             </Button>
             <Button
               variant="default"
@@ -115,7 +115,7 @@ export function ProfileClient({ username }: ProfileClientProps) {
                 target="_blank"
               >
                 <Share2 className="h-4 w-4" />
-                View Docker Hub
+                View Docker
               </Link>
             </Button>
           </div>
@@ -130,7 +130,7 @@ export function ProfileClient({ username }: ProfileClientProps) {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <div className="p-6 md:p-10 overflow-x-auto">
+            <div className="p-4 sm:p-10 overflow-x-auto">
               <HeatmapViewer
                 username={username}
                 options={{ theme: "github", days: 365 }}

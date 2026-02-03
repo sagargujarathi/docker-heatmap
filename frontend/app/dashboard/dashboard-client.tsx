@@ -244,8 +244,8 @@ export function DashboardClient() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="rounded-xl border bg-muted/20 p-4 sm:p-8 overflow-x-auto">
-                      <div className="min-w-[320px] flex justify-center items-center">
+                    <div className="rounded-xl border bg-muted/20 p-2 sm:p-8 overflow-x-auto">
+                      <div className="flex justify-center items-center">
                         <img
                           key={JSON.stringify(svgOptions)}
                           src={getCustomSvgUrl()}

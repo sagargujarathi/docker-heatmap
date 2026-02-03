@@ -33,26 +33,26 @@ const HomePage = async () => {
     <div className="min-h-screen bg-background flex flex-col">
       <main className="flex-1">
         {/* Hero */}
-        <section className="container flex flex-col items-center justify-center gap-6 py-24 md:py-32 text-center">
+        <section className="container flex flex-col items-center justify-center gap-6 py-16 md:py-32 text-center">
           <Image
             src="/logo.webp"
             alt="Docker Heatmap Large Logo"
-            width={180}
-            height={180}
-            className="mb-6 animate-in fade-in zoom-in duration-1000"
+            width={120}
+            height={120}
+            className="mb-4 animate-in fade-in zoom-in duration-1000 md:w-[180px] md:h-[180px]"
             priority
           />
           <div className="flex flex-col items-center gap-3">
-            <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs text-primary font-medium">
+            <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[10px] sm:text-xs text-primary font-medium">
               Open source · Free forever
             </div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-balance max-w-3xl">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-balance max-w-3xl leading-[1.1]">
             Docker Hub activity heatmaps for your README
           </h1>
 
-          <p className="text-lg text-muted-foreground max-w-xl text-balance">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-xl text-balance">
             Generate embeddable contribution graphs that automatically update.
             Show your container activity like GitHub shows commits.
           </p>
@@ -61,10 +61,12 @@ const HomePage = async () => {
         </section>
 
         {/* Preview */}
-        <section className="container pb-24">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold mb-2">Try different themes</h2>
-            <p className="text-muted-foreground">
+        <section className="container pb-20 md:pb-32">
+          <div className="text-center mb-8 px-4">
+            <h2 className="text-xl sm:text-2xl font-bold mb-2">
+              Try different themes
+            </h2>
+            <p className="text-sm text-muted-foreground">
               Hover over tiles to see details • Click a theme to preview
             </p>
           </div>
@@ -72,15 +74,17 @@ const HomePage = async () => {
         </section>
 
         {/* Features */}
-        <section className="container py-20 border-t">
+        <section className="container py-16 md:py-24 border-t">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Everything you need</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+              Everything you need
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
               Built for developers who want to showcase their Docker Hub
               activity without the hassle.
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
               <Feature
                 key={feature.title}
@@ -93,13 +97,13 @@ const HomePage = async () => {
         </section>
 
         {/* How it works */}
-        <section className="container py-20 border-t">
+        <section className="container py-16 md:py-24 border-t">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-4">
+            <div className="min-w-0">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Get started in minutes
               </h2>
-              <p className="text-muted-foreground mb-8">
+              <p className="text-sm sm:text-base text-muted-foreground mb-8">
                 No complex setup required. Connect your Docker Hub account and
                 start showcasing your activity immediately.
               </p>
@@ -117,15 +121,17 @@ const HomePage = async () => {
             </div>
 
             {/* Code preview */}
-            <div className="relative">
-              <div className="rounded-xl border bg-zinc-950 p-6 shadow-2xl">
+            <div className="relative min-w-0">
+              <div className="rounded-xl border bg-zinc-950 p-4 sm:p-6 shadow-2xl">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
-                  <span className="ml-3 text-xs text-zinc-500">README.md</span>
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                  <span className="ml-2 text-[10px] text-zinc-500 font-mono">
+                    README.md
+                  </span>
                 </div>
-                <pre className="text-sm text-zinc-300 overflow-x-auto">
+                <pre className="text-[11px] sm:text-sm text-zinc-300 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-zinc-800">
                   <code>{`# My Awesome Project
 
 ## Docker Activity
@@ -137,7 +143,7 @@ const HomePage = async () => {
                 </pre>
               </div>
               {/* Decorative glow */}
-              <div className="absolute -inset-4 bg-primary/10 blur-3xl -z-10 rounded-full" />
+              <div className="absolute -inset-4 bg-primary/10 blur-3xl -z-10 rounded-full hidden sm:block" />
             </div>
           </div>
         </section>

@@ -54,16 +54,18 @@ export function DockerConnectionCard({
             <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
           </div>
         ) : hasAccount && account ? (
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500/10">
+              <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-green-500/10">
                 <Check className="h-5 w-5 text-green-500" />
               </div>
-              <div>
-                <p className="font-medium">{account.docker_username}</p>
+              <div className="min-w-0">
+                <p className="font-medium truncate">
+                  {account.docker_username}
+                </p>
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-0.5">
                   <Clock className="h-3.5 w-3.5" />
-                  <span>
+                  <span className="truncate">
                     {account.last_sync_at
                       ? `Last synced ${formatSyncTime(account.last_sync_at)}`
                       : "Syncing..."}
@@ -71,13 +73,14 @@ export function DockerConnectionCard({
                 </div>
               </div>
             </div>
-            <div className="flex flex-col items-end gap-1">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col items-start sm:items-end gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={onSync}
                   disabled={isSyncing}
+                  className="whitespace-nowrap"
                 >
                   <RefreshCw
                     className={`h-4 w-4 mr-2 ${isSyncing ? "animate-spin" : ""}`}
@@ -89,13 +92,13 @@ export function DockerConnectionCard({
                   size="sm"
                   onClick={onDisconnect}
                   disabled={isDisconnecting}
-                  className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                  className="text-destructive hover:text-destructive hover:bg-destructive/10 whitespace-nowrap"
                 >
-                  Disconnect & Delete Data
+                  Disconnect
                 </Button>
               </div>
               <p className="text-[10px] text-muted-foreground mr-2">
-                Permanently removes all your activity data from our servers.
+                Permanently removes all your activity data.
               </p>
             </div>
           </div>

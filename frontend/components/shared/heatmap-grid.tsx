@@ -59,7 +59,7 @@ export const HeatmapGrid = ({
   return (
     <TooltipProvider delayDuration={100}>
       <div
-        className="rounded-lg p-6 mx-auto transition-colors duration-300 w-fit"
+        className="rounded-lg p-4 sm:p-6 mx-auto transition-colors duration-300 w-fit max-w-full"
         style={{ backgroundColor: theme.bg }}
       >
         {/* Header */}
