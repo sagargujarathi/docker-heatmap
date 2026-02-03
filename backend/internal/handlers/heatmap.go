@@ -111,7 +111,7 @@ func (h *HeatmapHandler) GetHeatmapSVG(c *fiber.Ctx) error {
 	}
 
 	c.Set("Content-Type", "image/svg+xml")
-	c.Set("Cache-Control", "public, max-age=3600") // Cache for 1 hour
+	c.Set("Cache-Control", "public, max-age=7200") // Cache for 2 hours
 	return c.Send(svg)
 }
 
@@ -211,7 +211,7 @@ func (h *HeatmapHandler) GetActivityJSON(c *fiber.Ctx) error {
 		totalBuilds += a.Builds
 	}
 
-	c.Set("Cache-Control", "public, max-age=3600") // Cache for 1 hour
+	c.Set("Cache-Control", "public, max-age=7200") // Cache for 2 hours
 	return c.JSON(fiber.Map{
 		"username": username,
 		"days":     days,

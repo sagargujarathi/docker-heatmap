@@ -9,7 +9,7 @@ interface HeroCTAProps {
   stars: number | null;
 }
 
-export function HeroCTA({ stars }: HeroCTAProps) {
+export const HeroCTA = ({ stars }: HeroCTAProps) => {
   const { isAuthenticated, login, isLoading } = useAuth();
 
   if (isLoading) {
@@ -53,4 +53,4 @@ export function HeroCTA({ stars }: HeroCTAProps) {
       </Link>
     </div>
   );
-}
+};

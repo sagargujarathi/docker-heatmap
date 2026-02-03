@@ -1,9 +1,7 @@
 import { Metadata } from "next";
-import { Github } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import { HeatmapPreview } from "@/components/landing/heatmap-preview";
-import { Feature, Step } from "@/components/landing/sections";
+import { Feature, Step, features, steps } from "@/components/landing/sections";
 import { HeroCTA } from "@/components/landing/hero-cta";
 
 export const metadata: Metadata = {
@@ -12,7 +10,7 @@ export const metadata: Metadata = {
     "Generate stunning, embeddable SVG contribution heatmaps for your Docker Hub activity. Perfect for your GitHub README and developer profiles.",
 };
 
-async function getGitHubStars() {
+const getGitHubStars = async () => {
   try {
     const res = await fetch(
       "https://api.github.com/repos/sagargujarathi/docker-heatmap",
@@ -26,9 +24,9 @@ async function getGitHubStars() {
   } catch {
     return null;
   }
-}
+};
 
-export default async function HomePage() {
+const HomePage = async () => {
   const stars = await getGitHubStars();
 
   return (
@@ -63,50 +61,89 @@ export default async function HomePage() {
         </section>
 
         {/* Preview */}
-        <section className="container pb-16">
-          <div className="rounded-lg border bg-card p-6 md:p-8">
-            <div className="text-xs text-muted-foreground mb-4 flex items-center justify-between">
-              <span>@dockeruser</span>
-              <span>1,247 contributions</span>
-            </div>
-            <HeatmapPreview />
+        <section className="container pb-24">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold mb-2">Try different themes</h2>
+            <p className="text-muted-foreground">
+              Hover over tiles to see details • Click a theme to preview
+            </p>
           </div>
+          <HeatmapPreview />
         </section>
 
         {/* Features */}
-        <section className="container py-16 border-t">
-          <div className="grid gap-8 md:grid-cols-3">
-            <Feature title="Embeddable SVG">
-              One URL. Works in GitHub README, websites, or anywhere that
-              renders images.
-            </Feature>
-            <Feature title="Encrypted tokens">
-              Your Docker Hub access token is encrypted with AES-256. Never
-              stored in plaintext.
-            </Feature>
-            <Feature title="Manual Sync">
-              Keep your activity updated with a single click from your
-              dashboard.
-            </Feature>
+        <section className="container py-20 border-t">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Everything you need</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Built for developers who want to showcase their Docker Hub
+              activity without the hassle.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature) => (
+              <Feature
+                key={feature.title}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+              />
+            ))}
           </div>
         </section>
 
         {/* How it works */}
-        <section className="container py-16 border-t">
-          <h2 className="text-2xl font-bold mb-8">How it works</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            <Step num={1} title="Sign in with GitHub">
-              Quick OAuth login. No password to remember.
-            </Step>
-            <Step num={2} title="Connect Docker Hub">
-              Enter your username and access token.
-            </Step>
-            <Step num={3} title="Copy embed URL">
-              Paste the SVG URL into your README. Done.
-            </Step>
+        <section className="container py-20 border-t">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-4">
+                Get started in minutes
+              </h2>
+              <p className="text-muted-foreground mb-8">
+                No complex setup required. Connect your Docker Hub account and
+                start showcasing your activity immediately.
+              </p>
+              <div className="space-y-0">
+                {steps.map((step, index) => (
+                  <Step
+                    key={step.num}
+                    num={step.num}
+                    title={step.title}
+                    description={step.description}
+                    isLast={index === steps.length - 1}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Code preview */}
+            <div className="relative">
+              <div className="rounded-xl border bg-zinc-950 p-6 shadow-2xl">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                  <span className="ml-3 text-xs text-zinc-500">README.md</span>
+                </div>
+                <pre className="text-sm text-zinc-300 overflow-x-auto">
+                  <code>{`# My Awesome Project
+
+## Docker Activity
+
+![Docker Heatmap](https://dockerheatmap.dev/api/heatmap/username.svg)
+
+## About
+...`}</code>
+                </pre>
+              </div>
+              {/* Decorative glow */}
+              <div className="absolute -inset-4 bg-primary/10 blur-3xl -z-10 rounded-full" />
+            </div>
           </div>
         </section>
       </main>
     </div>
   );
-}
+};
+
+export default HomePage;
