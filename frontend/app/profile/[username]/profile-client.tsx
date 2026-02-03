@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ProfileData } from "@/lib/schemas";
 import { useToast } from "@/hooks/use-toast";
+import { HeatmapViewer } from "@/components/dashboard/heatmap-viewer";
 
 interface ProfileClientProps {
   username: string;
@@ -121,38 +122,40 @@ export function ProfileClient({ username }: ProfileClientProps) {
         </div>
 
         {/* Heatmap */}
-        <Card className="overflow-hidden border-muted/50 shadow-sm">
-          <CardHeader className="bg-muted/30 border-b py-4">
+        <Card className="overflow-hidden shadow-md">
+          <CardHeader className="bg-muted/20 border-b py-5">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" />
+              <div className="w-2.5 h-2.5 rounded-full bg-primary" />
               Docker Hub Activity (Last Year)
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <div className="p-6 md:p-10 overflow-x-auto flex flex-col items-center">
-              <img
-                src={publicApi.getHeatmapUrl(username, { theme: "github" })}
-                alt={`${username}'s Docker activity`}
-                className="max-w-none rounded shadow-sm bg-background border p-4"
+            <div className="p-6 md:p-10 overflow-x-auto">
+              <HeatmapViewer
+                username={username}
+                options={{ theme: "github", days: 365 }}
               />
-              <p className="text-xs text-muted-foreground mt-4 italic">
-                Activity data is fetched directly from Docker Hub API.
+              <p className="text-xs text-muted-foreground mt-6 text-center">
+                Hover over tiles to see activity details
               </p>
             </div>
           </CardContent>
         </Card>
 
         {/* CTA */}
-        <div className="mt-16 text-center border-t pt-16 pb-12">
-          <h2 className="text-2xl font-bold mb-4">
+        <div className="mt-20 text-center border-t pt-16 pb-12">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Want your own Docker activity heatmap?
           </h2>
-          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-            Join hundreds of developers who showcase their container activity on
-            their GitHub READMEs.
+          <p className="text-muted-foreground mb-8 max-w-md mx-auto text-lg">
+            Join developers who showcase their container activity on their
+            GitHub READMEs.
           </p>
           <Link href="/">
-            <Button size="lg" className="rounded-full px-8 shadow-lg">
+            <Button
+              size="lg"
+              className="rounded-full px-10 shadow-lg shadow-primary/20 font-semibold"
+            >
               Get started for free
             </Button>
           </Link>

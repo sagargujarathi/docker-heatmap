@@ -79,6 +79,9 @@ export function DashboardClient() {
       }
     },
     enabled: isAuthenticated,
+    refetchInterval: (query) => {
+      return query.state.data?.account?.sync_in_progress ? 3000 : false;
+    },
   });
 
   // Fetch available themes
@@ -150,10 +153,12 @@ export function DashboardClient() {
   // Generate custom SVG URL
   const getCustomSvgUrl = () => {
     if (!dockerData?.account?.docker_username) return "";
-    return publicApi.getHeatmapUrl(
+    const url = publicApi.getHeatmapUrl(
       dockerData.account.docker_username,
       svgOptions,
     );
+    // Add timestamp to force update the image
+    return `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`;
   };
 
   // Loading state
@@ -241,7 +246,6 @@ export function DashboardClient() {
                   <CardContent>
                     <div className="rounded-xl border bg-muted/20 p-4 sm:p-8 overflow-x-auto">
                       <div className="min-w-[320px] flex justify-center items-center">
-                        {/* Using a regular img tag for the dynamic SVG since Next/Image has issues with dynamic external SVGs and size optimization for small assets */}
                         <img
                           key={JSON.stringify(svgOptions)}
                           src={getCustomSvgUrl()}
