@@ -2,7 +2,7 @@
 
 Generate beautiful GitHub-style contribution heatmaps for your Docker Hub activity. Embed in your README and showcase your container contributions.
 
-![Docker Heatmap Preview](https://via.placeholder.com/800x200/161b22/39d353?text=Docker+Activity+Heatmap)
+![Docker Activity](https://api.dockerheatmap.dev/api/heatmap/sagargujarathi.svg?theme=github&days=365&cell_size=11&radius=2&t=1770191655666)
 
 ## ✨ Features
 
