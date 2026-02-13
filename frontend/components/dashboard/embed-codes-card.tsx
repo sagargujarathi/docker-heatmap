@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Check, Copy, ExternalLink, Link as LinkIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { publicApi } from "@/lib/api";
 import {
   Card,
   CardContent,
@@ -28,6 +29,8 @@ export function EmbedCodesCard({
   const markdownCode = `![Docker Activity](${customUrl})`;
   const htmlCode = `<img src="${customUrl}" alt="Docker Activity Heatmap" />`;
 
+  const activityJsonUrl = publicApi.getActivityUrl(dockerUsername, 365);
+
   const codes = [
     {
       label: "Markdown (for GitHub README)",
@@ -46,6 +49,12 @@ export function EmbedCodesCard({
       value: htmlCode,
       type: "html",
       icon: "🌐",
+    },
+    {
+      label: "Raw JSON Data",
+      value: activityJsonUrl,
+      type: "json",
+      icon: "📊",
     },
   ];
 

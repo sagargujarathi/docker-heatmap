@@ -5,7 +5,15 @@ import { publicApi } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowLeft, Loader2, Github, Share2, Copy, Check } from "lucide-react";
+import {
+  ArrowLeft,
+  Loader2,
+  Github,
+  Share2,
+  Copy,
+  Check,
+  FileJson,
+} from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { ProfileData } from "@/lib/schemas";
@@ -103,6 +111,20 @@ export function ProfileClient({ username }: ProfileClientProps) {
                 <Copy className="h-4 w-4" />
               )}
               {copied ? "Copied" : "Copy Link"}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2 shrink-0 shadow-sm"
+              asChild
+            >
+              <Link
+                href={publicApi.getActivityUrl(profile.docker.username)}
+                target="_blank"
+              >
+                <FileJson className="h-4 w-4 text-orange-500" />
+                Raw JSON
+              </Link>
             </Button>
             <Button
               variant="default"
